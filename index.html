@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,7 +15,6 @@
 :root {
   --prune: #5b2d7e;
   --prune-light: #7a3fa8;
-  --prune-dark: #3a1a52;
   --prune-deeper: #1a0a28;
   --lavande: #c4a8e8;
   --lavande-light: #e8d8f8;
@@ -25,38 +25,33 @@
   --present: #27ae60;
   --remplacant: #e67e22;
   --surface: rgba(91,45,126,0.18);
-  --surface2: rgba(196,168,232,0.10);
   --radius: 14px;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+* { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
 body {
   background: var(--prune-deeper);
   background-image:
     radial-gradient(ellipse 80% 60% at 20% 10%, rgba(91,45,126,0.55) 0%, transparent 70%),
     radial-gradient(ellipse 60% 80% at 80% 90%, rgba(122,63,168,0.35) 0%, transparent 70%);
   color: var(--blanc);
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: Georgia, serif;
   min-height: 100dvh;
   max-width: 520px;
   margin: 0 auto;
   padding-bottom: 72px;
 }
-
-/* HEADER */
 header {
   padding: 14px 16px 10px;
   text-align: center;
   border-bottom: 1px solid rgba(196,168,232,0.2);
   background: rgba(26,10,40,0.7);
   backdrop-filter: blur(10px);
-  position: sticky; top: 0; z-index: 100;
+  position: sticky; top:0; z-index:100;
 }
 .logo-row { display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:3px; }
-.logo-emoji { font-size:24px; }
 h1 { font-size:19px; font-weight:normal; letter-spacing:2px; color:var(--lavande-light); font-style:italic; }
 .subtitle { font-size:10px; color:var(--lavande); letter-spacing:3px; text-transform:uppercase; font-family:'Helvetica Neue',sans-serif; }
 
-/* NAV COURS */
 .nav-cours {
   display:flex; overflow-x:auto; gap:0;
   background:rgba(26,10,40,0.6);
@@ -74,12 +69,10 @@ h1 { font-size:19px; font-weight:normal; letter-spacing:2px; color:var(--lavande
   font-family:'Helvetica Neue',sans-serif;
   background:none; border-top:none; border-left:none;
 }
-.btn-cours:hover { color:var(--lavande); background:rgba(91,45,126,0.15); }
 .btn-cours.active { color:#fff; border-bottom:3px solid var(--gold); background:rgba(91,45,126,0.25); }
-.btn-cours .c-lieu { font-size:12px; font-weight:bold; display:block; color:inherit; }
+.btn-cours .c-lieu { font-size:12px; font-weight:bold; display:block; }
 .btn-cours .c-heure { font-size:10px; opacity:0.85; display:block; }
 
-/* BARRE SÉANCE */
 .seance-bar {
   display:flex; align-items:center; gap:8px; padding:10px 16px;
   background:rgba(91,45,126,0.2); border-bottom:1px solid rgba(196,168,232,0.12);
@@ -87,15 +80,14 @@ h1 { font-size:19px; font-weight:normal; letter-spacing:2px; color:var(--lavande
 .seance-bar select {
   flex:1; background:rgba(26,10,40,0.6); border:1px solid rgba(196,168,232,0.3);
   border-radius:8px; color:var(--blanc); padding:6px 10px; font-size:13px;
-  font-family:'Helvetica Neue',sans-serif; color-scheme:dark; cursor:pointer; min-width:0;
+  font-family:'Helvetica Neue',sans-serif; color-scheme:dark; cursor:pointer;
 }
 .btn-nav {
   background:var(--prune-light); color:#fff; border:none; border-radius:8px;
-  padding:6px 10px; cursor:pointer; font-size:14px; transition:opacity 0.2s; flex-shrink:0;
+  padding:6px 10px; cursor:pointer; font-size:14px; flex-shrink:0;
 }
 .btn-nav:disabled { opacity:0.25; cursor:default; }
 
-/* STATS */
 .stats-bar {
   display:flex; gap:8px; padding:10px 16px; flex-wrap:wrap;
   border-bottom:1px solid rgba(196,168,232,0.12);
@@ -110,9 +102,8 @@ h1 { font-size:19px; font-weight:normal; letter-spacing:2px; color:var(--lavande
 .sp-p .sv { color:var(--present); }
 .sp-a .sv { color:var(--absent); }
 .sp-t .sv { color:var(--gold-light); }
-.sp-l .sv { color:var(--lavande); }
+.sp-r .sv { color:var(--remplacant); }
 
-/* LISTE ÉLÈVES */
 .eleves-section { padding:12px 16px 0; }
 .section-label {
   font-size:10px; color:var(--lavande); text-transform:uppercase; letter-spacing:2px;
@@ -123,18 +114,20 @@ h1 { font-size:19px; font-weight:normal; letter-spacing:2px; color:var(--lavande
   border-radius:var(--radius); padding:10px 12px; margin-bottom:8px; transition:all 0.2s;
 }
 .eleve-card.absent-card { background:rgba(192,57,43,0.12); border-color:rgba(192,57,43,0.25); }
+.eleve-card.libre-card { opacity:0.4; }
 .eleve-row { display:flex; align-items:center; gap:10px; }
 .toggle-presence {
   width:32px; height:32px; border-radius:50%; border:2px solid var(--present);
   background:rgba(39,174,96,0.2); cursor:pointer; display:flex; align-items:center;
-  justify-content:center; font-size:16px; flex-shrink:0; transition:all 0.18s;
+  justify-content:center; font-size:16px; flex-shrink:0;
   -webkit-user-select:none; user-select:none;
 }
 .toggle-presence.absent { border-color:var(--absent); background:rgba(192,57,43,0.2); }
+.toggle-presence.libre { border-color:rgba(196,168,232,0.2); background:transparent; cursor:default; }
 .eleve-num { font-size:11px; color:var(--lavande); font-family:'Helvetica Neue',sans-serif; min-width:18px; text-align:center; opacity:0.7; }
 .eleve-nom { flex:1; font-size:15px; color:var(--blanc); font-family:'Helvetica Neue',sans-serif; }
+.eleve-nom.placeholder { color:rgba(196,168,232,0.3); font-style:italic; font-size:13px; }
 
-/* REMPLAÇANT */
 .remplacant-row {
   margin-top:8px; padding-top:7px; border-top:1px dashed rgba(196,168,232,0.2);
   display:flex; align-items:center; gap:8px;
@@ -148,7 +141,6 @@ h1 { font-size:19px; font-weight:normal; letter-spacing:2px; color:var(--lavande
 .remplacant-input::placeholder { color:rgba(230,126,34,0.35); }
 .remplacant-input:focus { border-color:var(--remplacant); }
 
-/* LISTE ATTENTE */
 .attente-section { padding:12px 16px; }
 .attente-label { font-size:10px; color:var(--lavande); text-transform:uppercase; letter-spacing:2px; font-family:'Helvetica Neue',sans-serif; margin-bottom:8px; }
 .attente-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
@@ -162,7 +154,6 @@ h1 { font-size:19px; font-weight:normal; letter-spacing:2px; color:var(--lavande
 .attente-input:focus { border-color:var(--lavande); }
 .attente-input::placeholder { color:rgba(196,168,232,0.25); font-style:italic; }
 
-/* NOTES */
 .notes-section { padding:0 16px 12px; }
 .notes-label { font-size:10px; color:var(--lavande); text-transform:uppercase; letter-spacing:2px; font-family:'Helvetica Neue',sans-serif; margin-bottom:8px; }
 .notes-input {
@@ -170,21 +161,18 @@ h1 { font-size:19px; font-weight:normal; letter-spacing:2px; color:var(--lavande
   border-radius:var(--radius); color:var(--blanc); padding:10px 12px;
   font-family:Georgia,serif; font-size:13px; resize:vertical; min-height:60px; outline:none;
 }
-.notes-input:focus { border-color:var(--lavande); }
 .notes-input::placeholder { color:rgba(196,168,232,0.3); font-style:italic; }
 
-/* RÉCAP */
 .recap-section { padding:0 16px 12px; }
 .recap-title { font-size:10px; color:var(--lavande); text-transform:uppercase; letter-spacing:2px; font-family:'Helvetica Neue',sans-serif; margin-bottom:8px; }
 .recap-table { width:100%; border-collapse:collapse; font-family:'Helvetica Neue',sans-serif; font-size:12px; }
 .recap-table th { background:rgba(91,45,126,0.4); color:var(--lavande); padding:6px 8px; text-align:left; font-weight:normal; text-transform:uppercase; letter-spacing:1px; font-size:10px; }
 .recap-table td { padding:5px 8px; border-bottom:1px solid rgba(196,168,232,0.08); color:var(--blanc); }
-.recap-table tr.current-seance td { background:rgba(91,45,126,0.25); }
+.recap-table tr.cur td { background:rgba(91,45,126,0.25); }
 .r-p { color:var(--present); font-weight:bold; }
 .r-a { color:var(--absent); }
 .r-t { color:var(--gold-light); }
 
-/* BOTTOM */
 .bottom-bar {
   position:fixed; bottom:0; left:50%; transform:translateX(-50%);
   width:100%; max-width:520px;
@@ -193,196 +181,147 @@ h1 { font-size:19px; font-weight:normal; letter-spacing:2px; color:var(--lavande
   padding:8px 16px 14px;
   display:flex; justify-content:space-between; align-items:center; z-index:200;
 }
-.brand-bottom { font-size:10px; color:rgba(196,168,232,0.4); font-family:'Helvetica Neue',sans-serif; letter-spacing:1px; }
-.btn-reset { background:none; border:1px solid rgba(192,57,43,0.35); color:rgba(192,57,43,0.6); border-radius:7px; padding:5px 10px; font-size:11px; font-family:'Helvetica Neue',sans-serif; cursor:pointer; transition:all 0.2s; }
-.btn-reset:hover { background:rgba(192,57,43,0.15); color:var(--absent); border-color:var(--absent); }
+.brand-bottom { font-size:10px; color:rgba(196,168,232,0.4); font-family:'Helvetica Neue',sans-serif; }
+.btn-reset { background:none; border:1px solid rgba(192,57,43,0.35); color:rgba(192,57,43,0.6); border-radius:7px; padding:5px 10px; font-size:11px; font-family:'Helvetica Neue',sans-serif; cursor:pointer; }
 .btn-export { background:rgba(212,168,67,0.2); border:1px solid rgba(212,168,67,0.35); color:var(--gold-light); border-radius:7px; padding:5px 10px; font-size:11px; font-family:'Helvetica Neue',sans-serif; cursor:pointer; }
 
-/* TOAST */
 .toast {
   position:fixed; bottom:76px; left:50%; transform:translateX(-50%) translateY(12px);
   background:var(--prune-light); color:#fff; padding:9px 18px; border-radius:20px;
   font-family:'Helvetica Neue',sans-serif; font-size:13px; opacity:0; transition:all 0.3s;
-  z-index:999; pointer-events:none; white-space:nowrap; box-shadow:0 4px 16px rgba(0,0,0,0.4);
+  z-index:999; pointer-events:none; white-space:nowrap;
 }
 .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
-.divider { height:1px; background:linear-gradient(to right,transparent,rgba(196,168,232,0.15),transparent); margin:6px 0 12px; }
 </style>
 </head>
 <body>
 
 <header>
   <div class="logo-row">
-    <span class="logo-emoji">🧘</span>
+    <span>🧘</span>
     <h1>Usha Yoga</h1>
-    <span class="logo-emoji">✨</span>
+    <span>✨</span>
   </div>
   <div class="subtitle">Présences · Fin 2025–2026</div>
 </header>
 
 <nav class="nav-cours" id="nav-cours"></nav>
-
 <div class="seance-bar">
   <button class="btn-nav" id="btn-prev">◀</button>
   <select id="seance-select"></select>
   <button class="btn-nav" id="btn-next">▶</button>
 </div>
-
 <div class="stats-bar" id="stats-bar"></div>
-
 <div class="eleves-section">
-  <div class="section-label">Élèves — touchez pour marquer absent·e</div>
+  <div class="section-label">Touchez ✓ pour marquer absent·e</div>
   <div id="liste-eleves"></div>
 </div>
-
 <div class="attente-section">
   <div class="attente-label">⏳ Liste d'attente</div>
   <div class="attente-grid" id="attente-grid"></div>
 </div>
-
 <div class="notes-section">
   <div class="notes-label">📝 Notes de séance</div>
   <textarea class="notes-input" id="notes-input" placeholder="Méditation, pratique, relaxation…"></textarea>
 </div>
-
 <div class="recap-section">
   <div class="recap-title">📊 Récapitulatif saison</div>
   <div id="recap-content"></div>
 </div>
-
 <div class="bottom-bar">
   <span class="brand-bottom">usha-yoga.fr</span>
-  <button class="btn-reset" id="btn-reset">↺ Reset séance</button>
-  <button class="btn-export" id="btn-export">📋 Copier résumé</button>
+  <button class="btn-reset" id="btn-reset">↺ Reset</button>
+  <button class="btn-export" id="btn-export">📋 Copier</button>
 </div>
-
 <div class="toast" id="toast"></div>
 
 <script>
-// ============================================================
-// ÉLÈVES PAR CRÉNEAU (intégrés directement)
-// ============================================================
-const ELEVES = {
-  "bruges-lun-18": [
-    "Patricia Giraudeau"
-    // à compléter — pas de liste Lundi reçue
-  ],
-  "bruges-lun-1945": [
-    // à compléter — pas de liste Lundi 19h45 reçue
-  ],
-  "bruges-jeu-18": [
-    "Marie-Françoise Beccerro",
-    "Sandrine Lacroix",
-    "Caroline Raynal",
-    "Karin Leroux",
-    "Elodie Gobin",
-    "Céline Lejeune",
-    "Hélène Anné",
-    "Frédéric Kateb",
-    "Laëtitia Galiana"
-  ],
-  "bruges-jeu-1945": [
-    "Pome Lasserre",
-    "Séverine Albert",
-    "Isabelle Ospital",
-    "Agnès Pallet",
-    "Oriane Gauthier",
-    "Marie-Laure Gauthier",
-    "Jean-Paul Gauthier",
-    "Maureen Roche",
-    "Alicia Roche"
-  ],
-  "soussans-ven": [
-    "Ruby Rojon",
-    "Emmanuelle Di Franco",
-    "Christine Malaquin",
-    "Candice Bauval",
-    "Christelle Crespy",
-    "Christelle De Ryck",
-    "Catherine Guyer",
-    "Isabelle Broustet",
-    "Nadine Cadiran",
-    "Ludivine Becerra",
-    "Estelle Grégoire"
-  ]
-};
-
-// ============================================================
-// COURS
-// ============================================================
 const COURS = [
   {
-    id: "bruges-lun-18",
+    id: "lun-18",
     lieu: "BRUGES", jour: "Lundi", heure: "18h00",
-    dates: ["04/05/2026","11/05/2026","18/05/2026","25/05/2026","01/06/2026","08/06/2026","15/06/2026","22/06/2026","29/06/2026"]
+    dates: ["04/05/2026","11/05/2026","18/05/2026","25/05/2026","01/06/2026","08/06/2026","15/06/2026","22/06/2026","29/06/2026"],
+    eleves: [
+      "Eulalie Pineau","Laure Pelloquin","Stéphanie Gillet","Céline Girardeau",
+      "Délphine Mercury","Célia Gauthier","Laure Maxel","Jocelyne Morin",
+      "Margarita Guilbert","Sandrine Faille","Elfried Ermane","Géraldine Anso",
+      "Hélène Garcia","Chantal Dubern","Laura Guillermain","Patricia Girardeau"
+    ]
   },
   {
-    id: "bruges-lun-1945",
+    id: "lun-1945",
     lieu: "BRUGES", jour: "Lundi", heure: "19h45",
-    dates: ["04/05/2026","11/05/2026","18/05/2026","25/05/2026","01/06/2026","08/06/2026","15/06/2026","22/06/2026","29/06/2026"]
+    dates: ["04/05/2026","11/05/2026","18/05/2026","25/05/2026","01/06/2026","08/06/2026","15/06/2026","22/06/2026","29/06/2026"],
+    eleves: [
+      "Carinne Soucadauch","Francis Luquet","Céline Gbarsin","Coralie Voirin",
+      "Fabienne Laplace-Toulouse","Frédérique Coup","Jean-Robert Ospital","Edwige Sicart",
+      "Cédric Rousseau","Céline Larchier","Sophie Solnicky","Pascale Luquet",
+      "Sonia Duprat","Agnès Bréant","","" 
+    ]
   },
   {
-    id: "bruges-jeu-18",
+    id: "jeu-18",
     lieu: "BRUGES", jour: "Jeudi", heure: "18h00",
-    dates: ["07/05/2026","14/05/2026","21/05/2026","28/05/2026","04/06/2026","11/06/2026","18/06/2026","25/06/2026"]
+    dates: ["07/05/2026","14/05/2026","21/05/2026","28/05/2026","04/06/2026","11/06/2026","18/06/2026","25/06/2026"],
+    eleves: [
+      "Marie Mornet","Nadège Blanchard","Catherine Thèze","Sophie Uzic",
+      "Marco George","Muriel Pike","Marie-Françoise Beccerro","Sandrine Lacroix",
+      "Caroline Raynal","Karin Leroux","Elodie Gobin","Céline Lejeune",
+      "Hélène Anné","Frédéric Kateb","Laëtitia Galiana",""
+    ]
   },
   {
-    id: "bruges-jeu-1945",
+    id: "jeu-1945",
     lieu: "BRUGES", jour: "Jeudi", heure: "19h45",
-    dates: ["07/05/2026","14/05/2026","21/05/2026","28/05/2026","04/06/2026","11/06/2026","18/06/2026","25/06/2026"]
+    dates: ["07/05/2026","14/05/2026","21/05/2026","28/05/2026","04/06/2026","11/06/2026","18/06/2026","25/06/2026"],
+    eleves: [
+      "Pome Lasserre","Séverine Albert","Isabelle Ospital","Agnès Pallet",
+      "Oriane Gauthier","Marie-Laure Gauthier","Jean-Paul Gauthier","Maureen Roche",
+      "Alicia Roche","","","",
+      "","","",""
+    ]
   },
   {
-    id: "soussans-ven",
+    id: "ven-soussans",
     lieu: "SOUSSANS", jour: "Vendredi", heure: "10h15",
-    dates: ["08/05/2026","15/05/2026","22/05/2026","29/05/2026","05/06/2026","12/06/2026","19/06/2026","26/06/2026"]
+    dates: ["08/05/2026","15/05/2026","22/05/2026","29/05/2026","05/06/2026","12/06/2026","19/06/2026","26/06/2026"],
+    eleves: [
+      "Ruby Rojon","Emmanuelle Di Franco","Christine Malaquin","Candice Bauval",
+      "Christelle Crespy","Christelle De Ryck","Catherine Guyer","Isabelle Broustet",
+      "Nadine Cadiran","Ludivine Becerra","Estelle Grégoire","",
+      "","","",""
+    ]
   }
 ];
 
 const NB_ATTENTE = 6;
-const LS = "usha_fin2026_v2";
+const LS = "usha_fin2026_v3";
 
-// ============================================================
-// STORAGE
-// ============================================================
 function loadAll() {
   try { const r = localStorage.getItem(LS); if (r) return JSON.parse(r); } catch(e) {}
-  return {};
+  return { seances: {} };
 }
-function saveAll(data) {
-  try { localStorage.setItem(LS, JSON.stringify(data)); } catch(e) {}
+function saveData() {
+  try { localStorage.setItem(LS, JSON.stringify(STATE)); } catch(e) {}
 }
 
-function getSeance(data, coursId, dateIdx) {
-  if (!data.seances) data.seances = {};
+function getSeance(coursId, dateIdx) {
   const key = `${coursId}__${dateIdx}`;
-  const eleves = ELEVES[coursId] || [];
-  if (!data.seances[key]) {
-    data.seances[key] = {
-      slots: eleves.map(() => ({ absent: false, remplacant: "" })),
+  if (!STATE.seances[key]) {
+    const cours = COURS.find(c => c.id === coursId);
+    STATE.seances[key] = {
+      slots: cours.eleves.map(() => ({ absent: false, remplacant: "" })),
       attente: Array(NB_ATTENTE).fill(""),
       notes: ""
     };
-  } else {
-    // S'assurer que slots a la bonne taille
-    while (data.seances[key].slots.length < eleves.length) {
-      data.seances[key].slots.push({ absent: false, remplacant: "" });
-    }
-    if (!data.seances[key].attente) data.seances[key].attente = Array(NB_ATTENTE).fill("");
-    if (!data.seances[key].notes) data.seances[key].notes = "";
   }
-  return data.seances[key];
+  return STATE.seances[key];
 }
 
-// ============================================================
-// ÉTAT
-// ============================================================
 let STATE = loadAll();
 let currentCours = 0;
 let currentDate = 0;
 
-// ============================================================
-// NAV
-// ============================================================
 function renderNav() {
   const nav = document.getElementById("nav-cours");
   nav.innerHTML = "";
@@ -390,7 +329,7 @@ function renderNav() {
     const btn = document.createElement("button");
     btn.className = "btn-cours" + (i === currentCours ? " active" : "");
     btn.innerHTML = `<span class="c-lieu">${c.lieu}</span><span class="c-heure">${c.jour} ${c.heure}</span>`;
-    btn.onclick = () => { save(); currentCours = i; currentDate = 0; render(); };
+    btn.onclick = () => { saveData(); currentCours = i; currentDate = 0; render(); };
     nav.appendChild(btn);
   });
 }
@@ -401,79 +340,78 @@ function renderSeanceBar() {
   sel.innerHTML = cours.dates.map((d, i) =>
     `<option value="${i}" ${i === currentDate ? "selected" : ""}>Séance ${i+1} — ${d}</option>`
   ).join("");
-  document.getElementById("btn-prev").disabled = (currentDate === 0);
-  document.getElementById("btn-next").disabled = (currentDate === cours.dates.length - 1);
+  document.getElementById("btn-prev").disabled = currentDate === 0;
+  document.getElementById("btn-next").disabled = currentDate === cours.dates.length - 1;
 }
 
-// ============================================================
-// STATS
-// ============================================================
 function renderStats() {
   const cours = COURS[currentCours];
-  const eleves = ELEVES[cours.id] || [];
-  const seance = getSeance(STATE, cours.id, currentDate);
+  const seance = getSeance(cours.id, currentDate);
   let presents = 0, absents = 0, remplacants = 0;
-  eleves.forEach((e, i) => {
-    if (seance.slots[i] && seance.slots[i].absent) absents++;
+  cours.eleves.forEach((nom, i) => {
+    if (!nom) return;
+    if (seance.slots[i].absent) absents++;
     else presents++;
-    if (seance.slots[i] && seance.slots[i].remplacant.trim()) remplacants++;
+    if (seance.slots[i].remplacant.trim()) remplacants++;
   });
-  const tapis = presents + remplacants;
   document.getElementById("stats-bar").innerHTML = `
     <div class="stat-pill sp-p"><span class="sv">${presents}</span><span class="sl">présent·e·s</span></div>
     <div class="stat-pill sp-a"><span class="sv">${absents}</span><span class="sl">absent·e·s</span></div>
-    <div class="stat-pill sp-t"><span class="sv">${tapis}</span><span class="sl">tapis</span></div>
-    <div class="stat-pill sp-l"><span class="sv">${remplacants || "—"}</span><span class="sl">remplaçant·e·s</span></div>
+    <div class="stat-pill sp-t"><span class="sv">${presents + remplacants}</span><span class="sl">tapis</span></div>
+    <div class="stat-pill sp-r"><span class="sv">${remplacants || "—"}</span><span class="sl">remplaçant·e·s</span></div>
   `;
 }
 
-// ============================================================
-// ÉLÈVES
-// ============================================================
 function renderEleves() {
   const cours = COURS[currentCours];
-  const eleves = ELEVES[cours.id] || [];
-  const seance = getSeance(STATE, cours.id, currentDate);
+  const seance = getSeance(cours.id, currentDate);
   const liste = document.getElementById("liste-eleves");
   liste.innerHTML = "";
 
-  eleves.forEach((nom, i) => {
-    const s = seance.slots[i] || { absent: false, remplacant: "" };
-    const isAbsent = s.absent;
+  cours.eleves.forEach((nom, i) => {
+    const s = seance.slots[i];
+    const libre = !nom;
+    const isAbsent = !libre && s.absent;
 
     const card = document.createElement("div");
-    card.className = "eleve-card" + (isAbsent ? " absent-card" : "");
+    card.className = "eleve-card" + (isAbsent ? " absent-card" : "") + (libre ? " libre-card" : "");
 
     card.innerHTML = `
       <div class="eleve-row">
-        <div class="toggle-presence ${isAbsent ? "absent" : ""}" data-idx="${i}">
-          ${isAbsent ? "✗" : "✓"}
+        <div class="toggle-presence ${isAbsent ? "absent" : ""} ${libre ? "libre" : ""}" data-idx="${i}">
+          ${libre ? "·" : isAbsent ? "✗" : "✓"}
         </div>
         <div class="eleve-num">${i+1}</div>
-        <div class="eleve-nom">${nom}</div>
+        <div class="eleve-nom ${libre ? "placeholder" : ""}">${libre ? "Place libre / rattrapage" : nom}</div>
       </div>
       ${isAbsent ? `
       <div class="remplacant-row">
         <span class="remplacant-label">↪ Remplaçant·e</span>
-        <input type="text" class="remplacant-input" data-idx="${i}"
-          value="${s.remplacant || ""}" placeholder="Prénom…" maxlength="40">
+        <input type="text" class="remplacant-input" value="${s.remplacant || ""}" placeholder="Prénom…" maxlength="40">
+      </div>` : ""}
+      ${libre ? `
+      <div class="remplacant-row">
+        <span class="remplacant-label">↪ Visiteur·se</span>
+        <input type="text" class="remplacant-input" value="${s.remplacant || ""}" placeholder="Prénom…" maxlength="40">
       </div>` : ""}
     `;
 
-    card.querySelector(".toggle-presence").addEventListener("click", () => {
-      seance.slots[i].absent = !seance.slots[i].absent;
-      if (!seance.slots[i].absent) seance.slots[i].remplacant = "";
-      save();
-      renderEleves();
-      renderStats();
-      renderRecap();
-    });
+    if (!libre) {
+      card.querySelector(".toggle-presence").addEventListener("click", () => {
+        s.absent = !s.absent;
+        if (!s.absent) s.remplacant = "";
+        saveData();
+        renderEleves();
+        renderStats();
+        renderRecap();
+      });
+    }
 
     const rInput = card.querySelector(".remplacant-input");
     if (rInput) {
       rInput.addEventListener("input", () => {
-        seance.slots[i].remplacant = rInput.value;
-        save();
+        s.remplacant = rInput.value;
+        saveData();
         renderStats();
       });
     }
@@ -484,51 +422,40 @@ function renderEleves() {
   // Notes
   const notesEl = document.getElementById("notes-input");
   notesEl.value = seance.notes || "";
-  notesEl.oninput = () => { seance.notes = notesEl.value; save(); };
+  notesEl.oninput = () => { seance.notes = notesEl.value; saveData(); };
 
   // Attente
-  renderAttente(seance);
-}
-
-function renderAttente(seance) {
   const grid = document.getElementById("attente-grid");
   grid.innerHTML = "";
   for (let i = 0; i < NB_ATTENTE; i++) {
     const item = document.createElement("div");
     item.className = "attente-item";
-    item.innerHTML = `
-      <span class="attente-num">${i+1}.</span>
-      <input type="text" class="attente-input" data-i="${i}"
-        value="${seance.attente[i] || ""}" placeholder="Nom…" maxlength="40">
-    `;
+    item.innerHTML = `<span class="attente-num">${i+1}.</span>
+      <input type="text" class="attente-input" value="${seance.attente[i] || ""}" placeholder="Nom…" maxlength="40">`;
     const inp = item.querySelector("input");
-    inp.addEventListener("input", () => { seance.attente[i] = inp.value; save(); });
+    inp.addEventListener("input", () => { seance.attente[i] = inp.value; saveData(); });
     grid.appendChild(item);
   }
 }
 
-// ============================================================
-// RÉCAP
-// ============================================================
 function renderRecap() {
   const cours = COURS[currentCours];
-  const eleves = ELEVES[cours.id] || [];
   let html = `<table class="recap-table"><thead><tr>
     <th>N°</th><th>Date</th><th>P</th><th>A</th><th>Tapis</th><th>Rpl.</th>
   </tr></thead><tbody>`;
   cours.dates.forEach((date, i) => {
-    const seance = getSeance(STATE, cours.id, i);
+    const seance = getSeance(cours.id, i);
     let p = 0, a = 0, rpl = 0;
-    eleves.forEach((e, j) => {
-      if (seance.slots[j] && seance.slots[j].absent) a++;
-      else p++;
-      if (seance.slots[j] && seance.slots[j].remplacant.trim()) rpl++;
+    cours.eleves.forEach((nom, j) => {
+      if (!nom) return;
+      if (seance.slots[j].absent) a++; else p++;
+      if (seance.slots[j].remplacant.trim()) rpl++;
     });
-    html += `<tr class="${i === currentDate ? "current-seance" : ""}">
+    html += `<tr class="${i === currentDate ? "cur" : ""}">
       <td>${i+1}</td><td>${date}</td>
       <td class="r-p">${p || "·"}</td>
       <td class="r-a">${a || "·"}</td>
-      <td class="r-t">${(p + rpl) || "·"}</td>
+      <td class="r-t">${(p+rpl) || "·"}</td>
       <td>${rpl || "·"}</td>
     </tr>`;
   });
@@ -536,110 +463,65 @@ function renderRecap() {
   document.getElementById("recap-content").innerHTML = html;
 }
 
-// ============================================================
-// EXPORT
-// ============================================================
 function exportResume() {
   const cours = COURS[currentCours];
-  const eleves = ELEVES[cours.id] || [];
-  const seance = getSeance(STATE, cours.id, currentDate);
+  const seance = getSeance(cours.id, currentDate);
   const dateStr = cours.dates[currentDate];
-  const dateFormatted = new Date(dateStr.split("/").reverse().join("-") + "T12:00:00")
+  const df = new Date(dateStr.split("/").reverse().join("-") + "T12:00:00")
     .toLocaleDateString("fr-FR", { weekday:"long", year:"numeric", month:"long", day:"numeric" });
 
-  let txt = `🧘 Usha Yoga — ${cours.lieu} ${cours.jour} ${cours.heure}\n`;
-  txt += `📅 ${dateFormatted} (séance ${currentDate+1}/${cours.dates.length})\n\n`;
-
+  let txt = `🧘 Usha Yoga — ${cours.lieu} ${cours.jour} ${cours.heure}\n📅 ${df}\n\n`;
   const presents = [], absents = [];
-  eleves.forEach((nom, i) => {
-    const s = seance.slots[i] || { absent: false, remplacant: "" };
-    if (s.absent) absents.push({ nom, rpl: s.remplacant });
+  cours.eleves.forEach((nom, i) => {
+    if (!nom) {
+      if (seance.slots[i].remplacant.trim()) presents.push(seance.slots[i].remplacant + " (visiteur·se)");
+      return;
+    }
+    if (seance.slots[i].absent) absents.push({ nom, rpl: seance.slots[i].remplacant });
     else presents.push(nom);
   });
-
-  txt += `✅ Présent·e·s (${presents.length}) :\n`;
-  txt += presents.map(n => `  · ${n}`).join("\n") || "  —";
-  if (absents.length > 0) {
+  txt += `✅ Présent·e·s (${presents.length}) :\n` + (presents.map(n => `  · ${n}`).join("\n") || "  —");
+  if (absents.length) {
     txt += `\n\n❌ Absent·e·s (${absents.length}) :\n`;
-    absents.forEach(a => {
-      txt += `  · ${a.nom}` + (a.rpl ? ` → remplacé·e par ${a.rpl}` : "") + "\n";
-    });
+    absents.forEach(a => { txt += `  · ${a.nom}${a.rpl ? " → remplacé·e par " + a.rpl : ""}\n`; });
   }
-  const attente = seance.attente.filter(a => a.trim());
-  if (attente.length > 0) {
-    txt += `\n\n⏳ Liste d'attente :\n`;
-    txt += attente.map((a, i) => `  ${i+1}. ${a}`).join("\n");
-  }
-  if (seance.notes.trim()) txt += `\n\n📝 Notes : ${seance.notes.trim()}`;
+  const att = seance.attente.filter(a => a.trim());
+  if (att.length) txt += `\n\n⏳ Liste d'attente :\n` + att.map((a,i) => `  ${i+1}. ${a}`).join("\n");
+  if (seance.notes.trim()) txt += `\n\n📝 ${seance.notes.trim()}`;
 
-  navigator.clipboard.writeText(txt).then(() => toast("Résumé copié ! 📋"))
-    .catch(() => toast("Résumé prêt ! 📋"));
+  navigator.clipboard.writeText(txt).then(() => toast("Résumé copié ! 📋")).catch(() => toast("Copié ! 📋"));
 }
 
-// ============================================================
-// RESET
-// ============================================================
 function resetSeance() {
-  if (!confirm("Remettre tout le monde présent pour cette séance ?")) return;
+  if (!confirm("Remettre tout le monde présent ?")) return;
   const cours = COURS[currentCours];
-  const eleves = ELEVES[cours.id] || [];
   const key = `${cours.id}__${currentDate}`;
-  if (!STATE.seances) STATE.seances = {};
   STATE.seances[key] = {
-    slots: eleves.map(() => ({ absent: false, remplacant: "" })),
+    slots: cours.eleves.map(() => ({ absent: false, remplacant: "" })),
     attente: Array(NB_ATTENTE).fill(""),
     notes: ""
   };
-  save();
-  render();
-  toast("Séance réinitialisée ✓");
+  saveData(); render(); toast("Séance réinitialisée ✓");
 }
-
-// ============================================================
-// SAVE / RENDER
-// ============================================================
-function save() { saveAll(STATE); }
 
 function render() {
-  renderNav();
-  renderSeanceBar();
-  renderStats();
-  renderEleves();
-  renderRecap();
+  renderNav(); renderSeanceBar(); renderStats(); renderEleves(); renderRecap();
 }
 
-// ============================================================
-// TOAST
-// ============================================================
 let toastT;
 function toast(msg) {
   const t = document.getElementById("toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  clearTimeout(toastT);
-  toastT = setTimeout(() => t.classList.remove("show"), 2200);
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), 2200);
 }
 
-// ============================================================
-// ÉVÉNEMENTS
-// ============================================================
-document.getElementById("btn-prev").onclick = () => {
-  if (currentDate > 0) { save(); currentDate--; render(); }
-};
-document.getElementById("btn-next").onclick = () => {
-  if (currentDate < COURS[currentCours].dates.length - 1) { save(); currentDate++; render(); }
-};
-document.getElementById("seance-select").onchange = function() {
-  save(); currentDate = parseInt(this.value); render();
-};
+document.getElementById("btn-prev").onclick = () => { if (currentDate > 0) { saveData(); currentDate--; render(); } };
+document.getElementById("btn-next").onclick = () => { if (currentDate < COURS[currentCours].dates.length-1) { saveData(); currentDate++; render(); } };
+document.getElementById("seance-select").onchange = function() { saveData(); currentDate = parseInt(this.value); render(); };
 document.getElementById("btn-reset").onclick = resetSeance;
 document.getElementById("btn-export").onclick = exportResume;
+setInterval(saveData, 30000);
 
-setInterval(save, 30000);
-
-// ============================================================
-// INIT
-// ============================================================
 render();
 </script>
 </body>
