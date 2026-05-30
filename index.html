@@ -440,7 +440,25 @@ document.getElementById("btn-export").onclick = exportResume;
 document.getElementById("btn-edit-mode").onclick = () => { editMode = !editMode; renderEleves(); };
 setInterval(saveData, 30000);
 
+// Sélection automatique de la séance la plus proche de la date du jour
+function autoSelectSeance() {
+  const cours = COURS[currentCours];
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  let bestIdx = 0;
+  let bestDiff = Infinity;
+  cours.dates.forEach((d, i) => {
+    const parts = d.split("/");
+    const date = new Date(parts[2], parts[1]-1, parts[0]);
+    const diff = Math.abs(date - today);
+    if (diff < bestDiff) { bestDiff = diff; bestIdx = i; }
+  });
+  currentDate = bestIdx;
+}
+
+autoSelectSeance();
 render();
 </script>
 </body>
 </html>
+
