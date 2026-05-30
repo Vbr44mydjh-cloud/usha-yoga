@@ -229,7 +229,7 @@ function renderNav() {
     const btn = document.createElement("button");
     btn.className = "btn-cours" + (i === currentCours ? " active" : "");
     btn.innerHTML = `<span class="c-lieu">${c.lieu}</span><span class="c-heure">${c.jour} ${c.heure}</span>`;
-    btn.onclick = () => { saveData(); currentCours = i; currentDate = 0; editMode = false; render(); };
+    btn.onclick = () => { saveData(); currentCours = i; editMode = false; autoSelectSeance(); render(); };
     nav.appendChild(btn);
   });
 }
@@ -461,4 +461,3 @@ render();
 </script>
 </body>
 </html>
-
